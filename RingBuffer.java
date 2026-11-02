@@ -6,38 +6,77 @@
  */
 public class RingBuffer 
 {
+    private int front;
+    private int back;
+    private int size;
+    private double[] buffer;
+
+    private int next(int index) {
+        if (index == buffer.length-1) {
+            return 0;
+        }
+        return index + 1;
+    }
 
     public RingBuffer(int capacity)
     {
+        front = -1;
+        back = 0;
+        size = 0;
+        buffer = new double[capacity];
     }
 
     public int size()
     {
-        return 0;
+        return size;
     }
     
     public boolean isEmpty()
     {
-        return false;
+        return size == 0;
     }
     
     public boolean isFull()
     {
-        return true;
+        return size == buffer.length;
     }
     
-    public void add(double value)
+    public void add(double value) throws InvalidActionException
     {
+        if (isFull()) {
+            throw new InvalidActionException("RingBuffer is full.");
+        }
+
+        buffer[back] = value;
+        
+        if (size == 0) {
+            front = back;
+        }
+        back = next(back);
+        size++;
     }
     
     public double peek()
     {
-        return 0.0;
+        if (isEmpty()) {
+            throw new InvalidActionException("RingBuffer is empty.");
+        }
+
+        return buffer[front];
     }
     
-    public double remove()
+    public double remove() throws InvalidActionException
     {
-        return 0.0;
+        if (isEmpty()) {
+            throw new InvalidActionException("RingBuffer is empty.");
+        }
+
+        double retrn = buffer[front];
+        buffer[front] = 0;
+        front = next(front);
+        size--;
+
+        return retrn;
     }
     
     // a simple test of the constructor and methods in RingBuffer
