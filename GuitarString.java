@@ -33,7 +33,13 @@ public class GuitarString
         int size = rb.size();
         for (int i = 0; i < size; i++) {
             rb.remove();
-            rb.add(ThreadLocalRandom.current().nextDouble(-0.5, Math.nextUp(0.5)));
+        }
+        while (true) {
+            try {
+                rb.add(ThreadLocalRandom.current().nextDouble(-0.5, Math.nextUp(0.5)));
+            } catch (InvalidActionException e) {
+                break;
+            }
         }
     }
 
