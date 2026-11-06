@@ -1,5 +1,7 @@
+
+
 public class GuitarPlayer {
-    public void main (String[] args) {
+    public static void main (String[] args) throws InterruptedException {
         String keyboard = "q2we4r5ty7u8i9op-[=zxdcfvgbnjmk,.;/' ";
 
         GuitarString[] strings = new GuitarString[37];
@@ -8,22 +10,119 @@ public class GuitarPlayer {
             strings[i] = new GuitarString(frequency);
         }
 
-        strings[keyboard.indexOf("n")].pluck();
-        playSample(strings);
-        strings[keyboard.indexOf("n")].pluck();
-        playSample(strings);
-        strings[keyboard.indexOf("/")].pluck();
-        playSample(strings);
-        strings[keyboard.indexOf("/")].pluck();
-        playSample(strings);
+        for (int i = 0; i < 10; i++) {
+            strings[keyboard.indexOf("n")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf("n")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf("/")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf("/")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf(" ")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf(" ")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf("/")].pluck();
+            playSample(strings);
+
+            Thread.sleep(500);
+
+            strings[keyboard.indexOf(".")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf(".")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf(",")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf(",")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf("m")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf("m")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf("n")].pluck();
+            playSample(strings);
+
+            Thread.sleep(500);
+
+            strings[keyboard.indexOf("/")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf("/")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf(".")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf(".")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf(",")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf(",")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf("m")].pluck();
+            playSample(strings);
+
+            Thread.sleep(500);
+
+            strings[keyboard.indexOf("/")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf("/")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf(".")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf(".")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf(",")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf(",")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf("m")].pluck();
+            playSample(strings);
+
+            Thread.sleep(500);
+
+            strings[keyboard.indexOf("n")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf("n")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf("/")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf("/")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf(" ")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf(" ")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf("/")].pluck();
+            playSample(strings);
+
+            Thread.sleep(500);
+
+            strings[keyboard.indexOf(".")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf(".")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf(",")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf(",")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf("m")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf("m")].pluck();
+            playSample(strings);
+            strings[keyboard.indexOf("n")].pluck();
+            playSample(strings);
+
+            Thread.sleep(500);
+        }
     }
 
-    private void playSample(GuitarString[] strings) {
-        double sample = 0;
-        for (int i = 0; i < strings.length; i++) {
-            sample += strings[i].sample();
-            strings[i].tic();
+    private static void playSample(GuitarString[] strings) {
+        for (int j = 0; j < 22050; j++) {
+            double sample = 0;
+            for (int i = 0; i < strings.length; i++) {
+                sample += strings[i].sample();
+                strings[i].tic();
+            }
+            StdAudio.play(sample);
         }
-        StdAudio.play(sample);
     }
 }
